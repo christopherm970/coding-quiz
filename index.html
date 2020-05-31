@@ -11,7 +11,7 @@
     <title>Coding Quiz</title>
   </head>
   <body>
-    <main>
+    <header>
         <!-- Navigation with High Scores and Timer -->
         <nav class="navbar fixed-top navbar-light bg-light">
             <span id="scoreLink" class="navbar-text btn btn-primary">
@@ -21,22 +21,30 @@
             Timer: <span id="timer">0</span>
             </span>
         </nav>
-    </main>
-    <section>
+    </header>
+    <main>
         <!--Opening page with start button -->
-        <div class="jumbotron quiz-container text-center">
+        <div id="beginningPage">
+          <div class="jumbotron quiz-container text-center">
             <h1 class="display-4">Welcome to Coding Quiz</h1>
             <p class="lead">Instructions for quiz.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Start</a>
+            <button type='button' id='startbtn' class="btn btn-primary btn-lg" role="button">Start</a>
+          </div>
         </div>
 
+        <!--Page with 4 choices -->
+        <div id="question-container"></div>
 
+        <!--Page with score displayed -->
+        <div id="score"></div>
         
-    </section>
+        
+    </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
   </body>
 </html>

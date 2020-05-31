@@ -1,3 +1,10 @@
+var startbtn= document.querySelector('#startbtn');
+var timerEl= document.querySelector('#timer');
+var questionContainerEl= document.querySelector('#question-container');
+var interval;
+var seconds = 5
+var qcounter = 0
+// Questions, Answers, and Choices
 var questions= [
     {
         title: "Question 1:",
@@ -30,3 +37,45 @@ var questions= [
         correctAnswer: "=",
     },
 ];
+
+// Function to start quiz.
+function startQuiz(){ 
+    if(seconds > 0){
+        interval = setInterval(function(){
+            seconds--;
+            timerEl.textContent = seconds
+            if(seconds === 0){
+                clearInterval(interval)
+            }
+        }, 1000)
+        showQuiz()
+    }
+}
+// Function to show quiz on page
+function showQuiz(){
+    var title= document.createElement('h1')
+    var description= document.createElement('p')
+    
+    title.textContent = questions[qcounter].title
+    description.textContent = questions[qcounter].description
+    questionContainerEl.appendChild(title)
+    questionContainerEl.appendChild(description)
+    
+    for(var i = 0; i < questions[qcounter].possibleAnswers.length; i++){
+        var possibleAnswers= document.createElement('button')
+        possibleAnswers.className = 'choices'
+        possibleAnswers.textContent = questions[qcounter].possibleAnswers[i];
+        questionContainerEl.appendChild(possibleAnswers)
+    }
+}
+
+document.
+document.addEventListener
+// Fuction to loop questions randomly and log answers
+
+// Function for Score and Timer
+
+startbtn.addEventListener('click', function(){
+    console.log('It works')
+    startQuiz()
+})
