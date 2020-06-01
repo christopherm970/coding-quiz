@@ -1,9 +1,10 @@
 var startbtn= document.querySelector('#startbtn');
 var timerEl= document.querySelector('#timer');
+var beginningPageEl = document.querySelector('#beginningPage')
 var questionContainerEl= document.querySelector('#question-container');
 var scoreContainerEl = document.querySelector('#score-container')
 var interval;
-var seconds = 100
+var seconds = 80
 var qcounter = 0
 var score = 0
 var highScores = localStorage.getItem('highScores')
@@ -100,7 +101,7 @@ document.addEventListener('click', function(e){
     //    console.log(score)
     //    console.log(qcounter)
        if(qcounter >= questions.length){
-        scoreContainerEl.textContent = score
+       endQuiz()
         var username = prompt('What are your initials?')
         var userandscore = {
             username : username,
@@ -118,7 +119,20 @@ document.addEventListener('click', function(e){
     
 })
 
+function endQuiz(){
+    beginningPageEl.style.visibility = 'hidden'
+    questionContainerEl.style.visibility = 'hidden'
+    scoreContainerEl.style.visibility = 'visible'
+    // scoreContainerEl.innerHTML = score
+    var endTitleScore= document.createElement('h1')
+    var endTitle = document.createElement('h1')
+    endTitleScore.innerHTML = score
+    endTitle.textContent= "You have completed the quiz. Here's your score"
+    scoreContainerEl.appendChild(endTitle)
+    scoreContainerEl.appendChild(endTitleScore)
+}
+
 startbtn.addEventListener('click', function(){
-    console.log('It works')
+    // console.log('It works')
     startQuiz()
 })
