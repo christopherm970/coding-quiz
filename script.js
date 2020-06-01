@@ -1,10 +1,23 @@
 var startbtn= document.querySelector('#startbtn');
 var timerEl= document.querySelector('#timer');
 var questionContainerEl= document.querySelector('#question-container');
+var scoreContainerEl = document.querySelector('#score-container')
 var interval;
-var seconds = 5
+var seconds = 100
 var qcounter = 0
+var score = 0
+var highScores = localStorage.getItem('highScores')
+
+// If statement for score to local storage
+if(highScores === null){
+    highScores = []
+} else {
+    highScores = JSON.parse(highScores)
+}
 // Questions, Answers, and Choices
+
+// console.log('highScores')
+// console.log(highScores)
 var questions= [
     {
         title: "Question 1:",
@@ -53,6 +66,7 @@ function startQuiz(){
 }
 // Function to show quiz on page
 function showQuiz(){
+    questionContainerEl.innerHTML =''
     var title= document.createElement('h1')
     var description= document.createElement('p')
     
@@ -69,11 +83,40 @@ function showQuiz(){
     }
 }
 
-document.
-document.addEventListener
-// Fuction to loop questions randomly and log answers
+// Fuction for score and end quiz
+document.addEventListener('click', function(e){
+    // console.log(e.target)
+    if(e.target.className.includes('choices')){
+       var userQuess= e.target.textContent
+       var userCorrect= questions[qcounter].correctAnswer
 
-// Function for Score and Timer
+       if(userQuess === userCorrect){
+           score += 10
+           qcounter ++
+       }else{
+            score -= 5
+            qcounter ++
+       }
+    //    console.log(score)
+    //    console.log(qcounter)
+       if(qcounter >= questions.length){
+        scoreContainerEl.textContent = score
+        var username = prompt('What are your initials?')
+        var userandscore = {
+            username : username,
+            score : score
+        }
+        // console.log(userandscore)
+        highScores.push(userandscore)
+        highScores = JSON.stringify(highScores)
+        localStorage.setItem('highScores', highScores)
+       }else{
+           showQuiz()
+       }
+    // console.log(questions[qcounter].correctAnswer)
+    }
+    
+})
 
 startbtn.addEventListener('click', function(){
     console.log('It works')
