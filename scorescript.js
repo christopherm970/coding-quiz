@@ -1,13 +1,14 @@
 var highScoresList = document.querySelector("#highScoresList");
-var clearHighscores = document.querySelector("#clearHighscoresID");
+var clearHighscores = document.querySelector("#clearHighscores");
 
-// ----- Functions
+
 renderHighScores();
 
-// Write each high score to a list item and display on page.
+// Put high scores to an item on the page
 function renderHighScores() {
 
     highScores = getHighScores();
+    console.log(highScores);
     highScoresList.innerHTML = "";
 
     for (var i = 0; i < highScores.length; i++) {
@@ -21,7 +22,7 @@ function renderHighScores() {
     }
 }
 
-// Get scores from local storage.
+// Pull scores from local storage.
 function getHighScores() {
     var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
 
