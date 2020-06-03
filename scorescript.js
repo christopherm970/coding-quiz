@@ -8,14 +8,14 @@ renderHighScores();
 function renderHighScores() {
 
     highScores = getHighScores();
-    console.log(highScores);
+    console.log(highScores.username);
     highScoresList.innerHTML = "";
 
     for (var i = 0; i < highScores.length; i++) {
         var highScoreItem = highScores[i];
 
         var li = document.createElement("li");
-        li.textContent = highScoreItem;
+        li.textContent = highScoreItem.username + '' + highScoreItem.score;
         li.setAttribute("data-index", i);
 
         highScoresList.appendChild(li);
@@ -24,8 +24,16 @@ function renderHighScores() {
 
 // Pull scores from local storage.
 function getHighScores() {
-    var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
-
+    var localArrayObj = localStorage.getItem('highScores')
+    var storedHighScores = JSON.parse(localArrayObj, function(key, value){
+        if (key == 'username') {
+            return value.toUpperCase();}
+            else {
+                return value;
+            }
+        }
+    );
+    console.log(storedHighScores)
     if (storedHighScores === null) {
         storedHighScores = [];
     }
